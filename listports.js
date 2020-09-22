@@ -10,11 +10,14 @@ More information:
 https://www.mobilefish.com/developer/iota/iota_quickguide_arduino_mam.html
 */
 
-const SerialPort = require('serialport');
+const SerialPort = require("serialport");
 
 // list serial ports:
-SerialPort.list(function (err, ports) {
-    ports.forEach(function(port) {
-        console.log(port.comName);
+SerialPort.list()
+  .then((ports) => {
+    // console.log("ports => ", ports);
+    ports.forEach(function (port) {
+      console.log(port);
     });
-});
+  })
+  .catch((err) => console.log(err));

@@ -33,3 +33,4 @@ How to use the scripts see:
 
 or watch this YouTube video:
 [https://youtu.be/T2b5WZDfg3c][2]
+# DHT11
