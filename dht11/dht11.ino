@@ -16,5 +16,5 @@ int chk = DHT.read11(DHT11_PIN);
     Serial.print("humidity: ");
     Serial.print(DHT.humidity);
     Serial.println("%"); 
-    delay(30000);
+    delay(10000);
 }
