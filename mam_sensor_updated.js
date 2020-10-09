@@ -35,11 +35,11 @@ const iotaConfig = {
 };
 
 const sensorConfig = {
-  secretKey: "HOKZNSXQUTVPVFM",
-  sensorId: "Sensor_094",
+  secretKey: "OJUDRQWRWQGTEZL",
+  sensorId: "Sensor_096",
 };
 
-const iota = new IOTA({ provider: "https://nodes.comnet.thetangle.org:443" });
+const iota = new IOTA({ provider: "https://altnodes.devnet.iota.org:443" });
 
 const MODE = "restricted"; // public, private or restricted
 const SIDEKEY = "mysecret"; // Enter only ASCII characters. Used only in restricted mode
@@ -118,6 +118,7 @@ const publish = async (packet) => {
 
     // console.log(message, message.root);
     console.log("Root : ", message.root);
+    console.log("Address : ", message.address);
     // Attach the payload.
     await Mam.attach(message.payload, message.address, 3, 10);
 

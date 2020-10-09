@@ -18,4 +18,3 @@ int chk = DHT.read11(DHT11_PIN);
     Serial.println("%"); 
     delay(30000);
 }
-

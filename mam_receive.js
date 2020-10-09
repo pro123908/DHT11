@@ -16,9 +16,10 @@ More information:
 https://www.mobilefish.com/developer/iota/iota_quickguide_arduino_mam.html
 */
 
-const Mam = require("./lib/mam.client.js");
+// const Mam = require("./lib/mam.client.js");
+const Mam = require("@iota/mam");
 const IOTA = require("iota.lib.js");
-const iota = new IOTA({ provider: "https://nodes.comnet.thetangle.org:443" });
+const iota = new IOTA({ provider: "https://altnodes.devnet.iota.org:443" });
 
 const MODE = "restricted"; // public, private or restricted
 const SIDEKEY = "mysecret"; // Enter only ASCII characters. Used only in restricted mode
@@ -44,6 +45,7 @@ let mamState = Mam.init(iota);
 // Set channel mode
 if (MODE == "restricted") {
   key = iota.utils.toTrytes(SIDEKEY);
+
   mamState = Mam.changeMode(mamState, MODE, key);
 } else {
   mamState = Mam.changeMode(mamState, MODE);
@@ -51,11 +53,12 @@ if (MODE == "restricted") {
 
 // Receive data from the tangle
 const executeDataRetrieval = async function (rootVal, keyVal) {
-  let resp = await Mam.fetch(rootVal, MODE, keyVal, function (data) {
+  let resp = await Mam.fetch(rootVal, MODE, keyVal, (data) => {
     let json = JSON.parse(iota.utils.fromTrytes(data));
     x;
     console.log(`dateTime: ${json.dateTime}, data: ${json.data}`);
   });
+  console.log("Res => ", resp);
 
   executeDataRetrieval(resp.nextRoot, keyVal);
 };
